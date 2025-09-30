@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import api from "../api/api.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import dash from "../assets/dash.jpg";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -37,12 +38,12 @@ export default function Login() {
 
       login({ token, role, username: loggedInUser });
       if (role === "Backoffice") {
-      navigate("/dashboard");
-    } else if (role === "Operator") {
-      navigate("/op");
-    } else {
-      navigate("/login");
-    }
+        navigate("/dashboard");
+      } else if (role === "Operator") {
+        navigate("/op");
+      } else {
+        navigate("/login");
+      }
     } catch (err) {
       // 401 here is invalid creds, NOT session expired (we handled that in interceptor)
       const msg =
@@ -143,12 +144,8 @@ export default function Login() {
 
       {/* Right: hero image (hidden on mobile) */}
       <div
-        className="hidden md:block bg-cover bg-center"
-        // Replace with your own image in /public and use: bg-[url('/login-side.jpg')]
-        style={{
-          backgroundImage:
-            "url('https://www.freepik.com/free-vector/electric-car-background_3515205.htm#fromView=search&page=1&position=28&uuid=de04df9e-e09f-46a3-9495-68767c73d4a1&query=ev+')",
-        }}
+        className="hidden md:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${dash})` }}
       />
     </div>
   );
